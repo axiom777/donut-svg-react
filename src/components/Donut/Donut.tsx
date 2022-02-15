@@ -1,31 +1,39 @@
 import * as React from "react";
 import styles from "./Donut.module.scss";
+import cn from "classnames";
 
 type Sizes = {
-  [key in Props["size"]]: { size: number; strokeWidth: number };
+  [key in Props["size"]]: {
+    size: number;
+    strokeWidth: number;
+    fontSize: number;
+  };
 };
 
 const sizes: Sizes = {
   small: {
     size: 79,
     strokeWidth: 5,
+    fontSize: 36,
   },
   regular: {
     size: 295,
     strokeWidth: 10,
+    fontSize: 120,
   },
 };
 
 const colors = [
-  { percent: 0, color: "#AC2020" },
-  { percent: 54, color: "#D38235" },
-  { percent: 74, color: "#654EA3" },
+  { percent: 0, color: "#AC2020", name: "Зона риска" },
+  { percent: 54, color: "#D38235", name: "Нейтральная зона" },
+  { percent: 74, color: "#654EA3", name: "Зона результативности" },
 ];
 
 type Props = {
   percent: number;
   size: "small" | "regular";
   direction: "up" | "down";
+  difference: number;
 };
 
 type State = {
@@ -43,8 +51,10 @@ export default class Donut extends React.Component<Props, State> {
   componentDidMount() {
     this.animateStart();
   }
+
   render() {
-    const { size, strokeWidth } = sizes[this.props.size];
+    const { difference } = this.props;
+    const { size, strokeWidth, fontSize } = sizes[this.props.size];
     const { d, currentValue } = this.state;
     let strokeColor = colors[0].color;
 
@@ -55,7 +65,10 @@ export default class Donut extends React.Component<Props, State> {
     }
 
     return (
-      <div className={styles.wrapper} style={{ width: size, height: size }}>
+      <div
+        className={styles.wrapper}
+        style={{ width: size, height: size, fontSize }}
+      >
         <svg style={{ width: size, height: size }}>
           <path
             d={d}
@@ -74,7 +87,29 @@ export default class Donut extends React.Component<Props, State> {
             style={{}}
           />
         </svg>
-        <div className={styles.text}>{currentValue}%</div>
+        <div className={styles.text}>
+          <span>{currentValue}</span>
+          <span
+            style={{
+              fontSize: fontSize / 2.5,
+              lineHeight: `${fontSize - 5}px`,
+            }}
+          >
+            %
+          </span>
+        </div>
+        {this.props.size === "small" && (
+          <div
+            className={cn(
+              styles.diff,
+              { [styles.positive]: difference > 0 },
+              { [styles.negative]: difference < 0 }
+            )}
+          >
+            {difference > 0 && "+"}
+            {difference}
+          </div>
+        )}
       </div>
     );
   }
@@ -82,8 +117,8 @@ export default class Donut extends React.Component<Props, State> {
     let v = 0;
     const { value } = this.state;
     const intervalOne = setInterval(() => {
-      var p = +(v / value).toFixed(2);
-      var a = p < 0.95 ? 2 - 2 * p : 0.05;
+      const p = +(v / value).toFixed(2);
+      const a = p < 0.95 ? 2 - 2 * p : 0.05;
       v += a;
       if (v >= +value) {
         v = value;
