@@ -78,7 +78,7 @@ export default class Donut extends React.Component<Props, State> {
             <circle
               cx={size / 2}
               cy={size / 2}
-              r={size / 2}
+              r={(size / 2) - 0.5}
               fill="transparent"
               stroke={strokeColor}
             />
