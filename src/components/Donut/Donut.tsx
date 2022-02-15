@@ -7,6 +7,7 @@ type Sizes = {
     size: number;
     strokeWidth: number;
     fontSize: number;
+    padding?: number;
   };
 };
 
@@ -20,6 +21,7 @@ const sizes: Sizes = {
     size: 295,
     strokeWidth: 10,
     fontSize: 120,
+    padding: 6,
   },
 };
 
@@ -54,7 +56,7 @@ export default class Donut extends React.Component<Props, State> {
 
   render() {
     const { difference } = this.props;
-    const { size, strokeWidth, fontSize } = sizes[this.props.size];
+    const { size, strokeWidth, fontSize, padding = 0 } = sizes[this.props.size];
     const { d, currentValue } = this.state;
     let strokeColor = colors[0].color;
 
@@ -66,10 +68,21 @@ export default class Donut extends React.Component<Props, State> {
 
     return (
       <div
-        className={styles.wrapper}
+        className={cn(styles.wrapper, {
+          [styles.regular]: this.props.size === "regular",
+        })}
         style={{ width: size, height: size, fontSize }}
       >
         <svg style={{ width: size, height: size }}>
+          {this.props.size === "regular" && (
+            <circle
+              cx={size / 2}
+              cy={size / 2}
+              r={size / 2}
+              fill="transparent"
+              stroke={strokeColor}
+            />
+          )}
           <path
             d={d}
             strokeWidth={strokeWidth}
@@ -81,10 +94,9 @@ export default class Donut extends React.Component<Props, State> {
           <circle
             cx={size / 2}
             cy={size / 2}
-            r={size / 2 - strokeWidth}
+            r={size / 2 - strokeWidth - padding}
             fill="white"
             stroke="#DCDCDC"
-            style={{}}
           />
         </svg>
         <div className={styles.text}>
@@ -92,7 +104,9 @@ export default class Donut extends React.Component<Props, State> {
           <span
             style={{
               fontSize: fontSize / 2.5,
-              lineHeight: `${fontSize - 5}px`,
+              lineHeight: `${
+                fontSize - (this.props.size === "regular" ? 35 : 5)
+              }px`,
             }}
           >
             %
@@ -157,12 +171,13 @@ export default class Donut extends React.Component<Props, State> {
   setValue(value: number) {
     let c = (value / 100) * 360;
     if (c === 360) c = 359.99;
-    const { size, strokeWidth } = sizes[this.props.size];
+    const { size, strokeWidth, padding = 0 } = sizes[this.props.size];
     const { direction } = this.props;
     const angle = direction === "up" ? 180 : 0;
     const xy = size / 2 - strokeWidth / 2;
+    const radius = xy - padding;
 
-    const d = this.describeArc(xy, xy, xy, angle, angle + c);
+    const d = this.describeArc(xy, xy, radius, angle, angle + c);
     this.setState({ d, currentValue: Math.round(value) });
   }
 }
