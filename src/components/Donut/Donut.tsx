@@ -1,39 +1,11 @@
 import * as React from "react";
 import styles from "./Donut.module.scss";
 import cn from "classnames";
-
-type Sizes = {
-  [key in Props["size"]]: {
-    size: number;
-    strokeWidth: number;
-    fontSize: number;
-    padding?: number;
-  };
-};
-
-const sizes: Sizes = {
-  small: {
-    size: 79,
-    strokeWidth: 5,
-    fontSize: 36,
-  },
-  regular: {
-    size: 295,
-    strokeWidth: 10,
-    fontSize: 120,
-    padding: 6,
-  },
-};
-
-const colors = [
-  { percent: 0, color: "#AC2020", name: "Зона риска" },
-  { percent: 54, color: "#D38235", name: "Нейтральная зона" },
-  { percent: 74, color: "#654EA3", name: "Зона результативности" },
-];
+import { sizes, colors, Sizes } from "../constants";
 
 type Props = {
   percent: number;
-  size: "small" | "regular";
+  size: keyof Sizes;
   direction: "up" | "down";
   difference: number;
 };
@@ -78,7 +50,7 @@ export default class Donut extends React.Component<Props, State> {
             <circle
               cx={size / 2}
               cy={size / 2}
-              r={(size / 2) - 0.5}
+              r={size / 2 - 0.5}
               fill="transparent"
               stroke={strokeColor}
             />
