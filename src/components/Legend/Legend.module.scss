@@ -1,0 +1,28 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.bar {
+  color: white;
+  font-weight: bold;
+  right: 0;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+}
+
+.name {
+  min-width: 100%;
+  text-align: center;
+}
