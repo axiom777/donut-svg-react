@@ -61,7 +61,7 @@ export default class Donut extends React.Component<Props, State> {
             stroke={strokeColor}
             fill="transparent"
             transform={`translate(${strokeWidth / 2},${strokeWidth / 2})`}
-            text-anchor="middle"
+            textAnchor="middle"
           />
           <circle
             cx={size / 2}
