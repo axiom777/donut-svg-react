@@ -4,7 +4,7 @@ import { colors } from "../constants";
 
 export default class Legend extends React.Component {
   render() {
-    const height = 32;
+    const height = 20;
     const count = colors.length;
     return (
       <div className={styles.wrapper}>
