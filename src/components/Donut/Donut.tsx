@@ -43,59 +43,78 @@ export default class Donut extends React.Component<Props, State> {
         className={cn(styles.wrapper, {
           [styles.regular]: this.props.size === "regular",
         })}
-        style={{ width: size, height: size, fontSize }}
+        style={{ width: size }}
       >
-        <svg style={{ width: size, height: size }}>
-          {this.props.size === "regular" && (
+        {this.props.size === "regular" && (
+          <div className={styles.regularDiff}>
+            <div
+              className={cn(
+                styles.regularDiffInner,
+                { [styles.positive]: difference > 0 },
+                { [styles.negative]: difference < 0 }
+              )}
+            >
+              {difference > 0 && "+"}
+              {difference}
+            </div>
+          </div>
+        )}
+        <div
+          className={styles.content}
+          style={{ width: size, height: size, fontSize }}
+        >
+          <svg style={{ width: size, height: size }}>
+            {this.props.size === "regular" && (
+              <circle
+                cx={size / 2}
+                cy={size / 2}
+                r={size / 2 - 0.5}
+                fill="transparent"
+                stroke={strokeColor}
+              />
+            )}
+            <path
+              d={d}
+              strokeWidth={strokeWidth}
+              stroke={strokeColor}
+              fill="transparent"
+              transform={`translate(${strokeWidth / 2},${strokeWidth / 2})`}
+              textAnchor="middle"
+            />
             <circle
               cx={size / 2}
               cy={size / 2}
-              r={size / 2 - 0.5}
-              fill="transparent"
-              stroke={strokeColor}
+              r={size / 2 - strokeWidth - padding}
+              fill="white"
+              stroke="#DCDCDC"
             />
-          )}
-          <path
-            d={d}
-            strokeWidth={strokeWidth}
-            stroke={strokeColor}
-            fill="transparent"
-            transform={`translate(${strokeWidth / 2},${strokeWidth / 2})`}
-            textAnchor="middle"
-          />
-          <circle
-            cx={size / 2}
-            cy={size / 2}
-            r={size / 2 - strokeWidth - padding}
-            fill="white"
-            stroke="#DCDCDC"
-          />
-        </svg>
-        <div className={styles.text}>
-          <span>{currentValue}</span>
-          <span
-            style={{
-              fontSize: fontSize / 2.5,
-              lineHeight: `${
-                fontSize - (this.props.size === "regular" ? 35 : 5)
-              }px`,
-            }}
-          >
-            %
-          </span>
-        </div>
-        {this.props.size === "small" && (
-          <div
-            className={cn(
-              styles.diff,
-              { [styles.positive]: difference > 0 },
-              { [styles.negative]: difference < 0 }
-            )}
-          >
-            {difference > 0 && "+"}
-            {difference}
+          </svg>
+          <div className={styles.text}>
+            <span>{currentValue}</span>
+            <span
+              style={{
+                fontSize: fontSize / 2.5,
+                lineHeight: `${
+                  fontSize - (this.props.size === "regular" ? 35 : 5)
+                }px`,
+              }}
+            >
+              %
+            </span>
           </div>
-        )}
+          {this.props.size === "small" && (
+            <div
+              className={cn(
+                styles.diff,
+                { [styles.positive]: difference > 0 },
+                { [styles.negative]: difference < 0 }
+              )}
+            >
+              {difference > 0 && "+"}
+              {difference}
+            </div>
+          )}
+        </div>
       </div>
     );
   }
