@@ -1,0 +1,16 @@
+:global(body) {
+  background: #e8eef3;
+}
+
+.wrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+  background: white;
+}
+
+.list {
+  padding: 30px;
+  li {
+    margin-bottom: 10px;
+  }
+}
