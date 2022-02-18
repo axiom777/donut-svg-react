@@ -1,0 +1,49 @@
+.wrapper {
+  display: flex;
+  padding: 20px 0;
+  align-items: center;
+
+  & > span {
+    font-size: 13px;
+    margin-right: 12px;
+  }
+}
+
+.bar {
+  position: relative;
+  flex-grow: 1;
+  background: #dcdcdc;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.percent {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  height: 8px;
+  border-radius: 4px;
+}
+
+$slice-fsz: 10px;
+
+.slice {
+  position: absolute;
+  height: calc(100% + 7px + #{$slice-fsz});
+  display: flex;
+  align-items: flex-start;
+  bottom: 0;
+  font-size: 10px;
+  transform: translateX(-50%);
+}
+
+.line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: calc(100% - 3px - #{$slice-fsz});
+  width: 2px;
+  background: #626261;
+}

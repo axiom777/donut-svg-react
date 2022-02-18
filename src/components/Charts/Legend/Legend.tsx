@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./Legend.module.scss";
-import { colors } from "../constants";
+import { colors } from "../../constants";
 
 export default class Legend extends React.Component {
   render() {

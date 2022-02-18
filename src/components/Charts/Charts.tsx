@@ -2,9 +2,9 @@ import React from "react";
 import styles from "./Charts.module.scss";
 import cn from "classnames";
 import mockData from "../../mockData";
-import Donut from "../Donut/Donut";
-import Factor from "../Factor/Factor";
-import Legend from "../Legend/Legend";
+import Donut from "./Donut/Donut";
+import Factor from "./Factor/Factor";
+import Legend from "./Legend/Legend";
 
 export default class Charts extends React.Component {
   render() {

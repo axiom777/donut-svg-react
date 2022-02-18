@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./Donut.module.scss";
 import cn from "classnames";
-import { sizes, colors, Sizes } from "../constants";
+import { sizes, colors, Sizes } from "../../constants";
 
 type Props = {
   percent: number;
