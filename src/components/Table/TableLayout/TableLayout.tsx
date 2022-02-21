@@ -55,7 +55,6 @@ export default class TableLayout extends React.Component<Props, {}> {
             ))}
           </tbody>
         </table>
-        <div className={styles.content}></div>
       </div>
     );
   }
