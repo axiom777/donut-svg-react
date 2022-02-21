@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  padding: 0 10px;
+  background: #f0f0f0;
+
+  & > span {
+    white-space: nowrap;
+  }
+
+  & > *:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+.bold {
+  font-weight: bold;
+}
