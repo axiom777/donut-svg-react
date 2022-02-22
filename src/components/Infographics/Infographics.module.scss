@@ -1,0 +1,25 @@
+.wrapper {
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.content {
+  position: relative;
+  box-sizing: border-box;
+  min-width: 1120px;
+  border: 2px solid #d3dae4;
+  box-sizing: border-box;
+  border-radius: 20px;
+  align-items: flex-start;
+  display: flex;
+}
+
+

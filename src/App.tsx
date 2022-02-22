@@ -4,6 +4,7 @@ import Charts from "./components/Charts/Charts";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import Table from "./components/Table/Table";
 import styles from "./App.module.scss";
+import Infographics from "./components/Infographics/Infographics";
 
 export default class App extends React.Component {
   render() {
@@ -13,6 +14,7 @@ export default class App extends React.Component {
           <Routes>
             <Route path="/charts" element={<Charts />} />
             <Route path="/table" element={<Table />} />
+            <Route path="/infographic" element={<Infographics />} />
             <Route path="*" element={<div>Not Found</div>} />
             <Route
               path="/"
@@ -23,6 +25,9 @@ export default class App extends React.Component {
                   </li>
                   <li>
                     <Link to="/table">Таблица</Link>
+                  </li>
+                  <li>
+                    <Link to="/infographic">Загогулина</Link>
                   </li>
                 </ul>
               }
