@@ -8,7 +8,15 @@ type Props = {
   dateFrom: Date;
   dateTo: Date;
   direction: "toRight" | "toThreeOClock" | "toSixOClock" | "toNineOClock";
+  list: string[];
+  listDirection:
+    | "toBottom"
+    | "toTop"
+    | "toRightLong"
+    | "toRightShort"
+    | "toBottomEnd";
 };
+
 type State = {
   fill: string;
 };
@@ -28,7 +36,15 @@ export default class ToRight extends React.Component<Props, State> {
   }
 
   render() {
-    const { index, text, dateFrom, dateTo, direction } = this.props;
+    const {
+      index,
+      text,
+      dateFrom,
+      dateTo,
+      direction,
+      list,
+      listDirection,
+    } = this.props;
     let indexStyle, textStyle, datesStyle;
     switch (direction) {
       default:
@@ -48,6 +64,12 @@ export default class ToRight extends React.Component<Props, State> {
         textStyle = styles.textToSixOClock;
         datesStyle = styles.datesToSixOClock;
         break;
+
+      case "toNineOClock":
+        indexStyle = styles.indexToNineOClock;
+        textStyle = styles.textToNineOClock;
+        datesStyle = styles.datesToNineOClock;
+        break;
     }
 
     return (
@@ -62,6 +84,11 @@ export default class ToRight extends React.Component<Props, State> {
           {dateFrom.toLocaleDateString("RU-ru")} -{" "}
           {dateTo.toLocaleDateString("RU-ru")}
         </div>
+        <ul className={cn(styles.list, styles[listDirection])}>
+          {list.map((li) => (
+            <li>{li}</li>
+          ))}
+        </ul>
       </div>
     );
   }

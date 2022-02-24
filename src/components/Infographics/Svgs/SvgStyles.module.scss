@@ -6,6 +6,7 @@
     vertical-align: bottom;
   }
 }
+
 .index {
   position: absolute;
   display: flex;
@@ -35,9 +36,8 @@
 }
 
 .indexToRight {
-  top: 50%;
+  top: 33px;
   right: 10px;
-  transform: translateY(-50%);
 }
 
 .textToRight {
@@ -48,7 +48,7 @@
 
 .datesToRight {
   left: 20px;
-  bottom: 15px;
+  top: 65px;
 }
 
 .indexToThreeOClock {
@@ -83,4 +83,122 @@
   left: 45px;
   bottom: 33px;
   max-width: 65px;
+}
+
+.indexToNineOClock {
+  top: 10px;
+  left: 33px;
+}
+
+.textToNineOClock {
+  top: 100px;
+  left: 30px;
+  max-width: 100px;
+}
+
+.datesToNineOClock {
+  max-width: 65px;
+  top: 50px;
+  left: 20px;
+}
+
+.list {
+  position: absolute;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  color: #000000;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.toBottom {
+  border-left: 2px solid #0070c8;
+  top: 90px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  width: calc(173px - 15px);
+
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: -6px;
+    content: "";
+    border: 5px solid transparent;
+    border-bottom: 10px solid #0070c8;
+  }
+}
+
+.toTop {
+  border-left: 2px solid #0070c8;
+  bottom: 100%;
+  right: 0;
+  margin: 0;
+  padding-bottom: 20px;
+  width: calc(173px - 15px);
+
+  &:before {
+    position: absolute;
+    top: 0%;
+    left: -6px;
+    content: "";
+    border: 5px solid transparent;
+    border-top: 10px solid #0070c8;
+  }
+}
+
+.toRightLong {
+  border-top: 2px solid #0070c8;
+  top: 0;
+  left: 0%;
+  padding-left: calc(100% + 30px);
+  margin: 0;
+  width: calc(100% + 200px);
+
+  &:before {
+    position: absolute;
+    top: -6px;
+    right: 0px;
+    content: "";
+    border: 5px solid transparent;
+    border-right: 10px solid #0070c8;
+  }
+}
+
+.toRightShort {
+  border-top: 2px solid #0070c8;
+  top: 1px;
+  left: calc(100% - 1px);
+  padding-left: 30px;
+  margin: 0;
+  width: 200px;
+
+  &:before {
+    position: absolute;
+    top: -6px;
+    right: 0px;
+    content: "";
+    border: 5px solid transparent;
+    border-right: 10px solid #0070c8;
+  }
+}
+
+.toBottomEnd {
+  margin: 0;
+
+  border-left: 2px solid #0070c8;
+  top: 100%;
+  left: calc(100% - 6px);
+  width: calc(173px - 15px);
+  padding-top: 20px;
+
+  &:before {
+    position: absolute;
+    bottom: 0;
+    left: -6px;
+    content: "";
+    border: 5px solid transparent;
+    border-bottom: 10px solid #0070c8;
+  }
 }
